@@ -1,4 +1,4 @@
-CREATE PROCEDURE CreateUserTable
+CREATE PROCEDURE CreateUsersTable
 AS
 CREATE TABLE Users(
     UserID INT IDENTITY(1,1) PRIMARY KEY, 
@@ -8,6 +8,6 @@ CREATE TABLE Users(
     Password CHAR(64), 
     Email VARCHAR(50), 
     Address VARCHAR(100), 
-    RoleID INT
+    RoleID INT FOREIGN KEY REFERENCES Roles(RoleID)
     )
 GO
