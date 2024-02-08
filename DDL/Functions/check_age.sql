@@ -1,0 +1,8 @@
+CREATE FUNCTION ValidateAge
+(
+    @StudentAge INT
+)
+RETURNS BOOLEAN
+AS 
+BEGIN 
+DECLARE 
