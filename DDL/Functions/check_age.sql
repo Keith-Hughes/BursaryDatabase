@@ -5,4 +5,12 @@ CREATE FUNCTION ValidateAge
 RETURNS BOOLEAN
 AS 
 BEGIN 
-DECLARE 
+    DECLARE @ValidatedStudentAge BOOLEAN
+
+    SELECT @ValidatedStudentAge = DATEDIFF(GETDATE() - DateOfBirth) from Students
+
+    RETURN @ValidatedStudentAge
+
+END
+
+GO
