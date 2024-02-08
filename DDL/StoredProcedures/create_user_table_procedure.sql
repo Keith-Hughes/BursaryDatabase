@@ -1,7 +1,7 @@
 CREATE PROCEDURE CreateUserTable
 AS
 CREATE TABLE Users(
-    UserID INT, 
+    UserID INT IDENTITY(1,1) PRIMARY KEY, 
     FirstName VARCHAR(MAX), 
     LastName VARCHAR(MAX), 
     Username VARCHAR(50), 
