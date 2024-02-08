@@ -1,13 +1,14 @@
 CREATE FUNCTION ValidateAge
 (
-    @StudentAge INT
+    @StudentID INT
 )
 RETURNS BOOLEAN
 AS 
+
 BEGIN 
     DECLARE @ValidatedStudentAge BOOLEAN
 
-    SELECT @ValidatedStudentAge = DATEDIFF(GETDATE() - DateOfBirth) from Students
+    SELECT @ValidatedStudentAge = DATEDIFF(GETDATE() - DateOfBirth) from Students 
 
     RETURN @ValidatedStudentAge
 
