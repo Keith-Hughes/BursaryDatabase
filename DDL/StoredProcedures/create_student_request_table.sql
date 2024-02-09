@@ -9,8 +9,8 @@ CREATE TABLE StudentRequests(
     Approved BOOLEAN,
     DateOfRequestSent DATE NOT NULL,
     DateOfStatusUpdate DATE,
-    InstitutionAdminsID INT FOREIGN KEY REFERENCES InstitutionAdmins(InstitutionAdminID),
-    InstitutionID INT FOREIGN KEY REFERENCES InstitutionAdmins(InstitutionID),
-    BBDAdminID INT FOREIGN KEY REFERENCES BBDAdmins(BBDAdminID)
+    InstitutionAdminsID INT FOREIGN KEY REFERENCES InstitutionAdmins(InstitutionAdminID) NOT NULL,
+    InstitutionID INT FOREIGN KEY REFERENCES InstitutionAdmins(InstitutionID) NOT NULL,
+    BBDAdminID INT FOREIGN KEY REFERENCES BBDAdmins(BBDAdminID) NOT NULL
 )
 GO
