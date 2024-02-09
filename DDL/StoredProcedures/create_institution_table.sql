@@ -1,4 +1,4 @@
-USE busaryDB
+USE BursaryDB
 GO
 
 CREATE PROCEDURE CreateInstitutionTable
