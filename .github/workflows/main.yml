@@ -17,28 +17,11 @@ jobs:
     - uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-    - name: Execute SQL Scripts
-      run: |
-        # Check if the event is a pull_request and if it's merged
-        # if ([ "${{ github.event_name }}" == "pull_request" ] && [ "${{ github.event.pull_request.merged }}" == "true" ]||
-        #    [ "${{ github.event_name }}" == "push" ]); then
-
-          echo "Executing SQL scripts."
-
-          # Define the path to your SQL files
-          # sql_files_path='./sql-scripts'
-          
-          # Get a list of SQL files
-          # sql_files=($(find $sql_files_path -name '*.sql'))
-
-          # Loop through SQL files and execute them
-          # for file in "${sql_files[@]}"; do
-          #   echo "Executing SQL script: $file"
-            az sql db exec-mssql-command --connection-string ${{ secrets.AZURE_SQL_CONNECTION_STRING }} --query "$(cat ./testing.sql)"
-          done
-        else
-          echo "Workflow not triggered for this event."
-        fi
-
+    - name: Deploy SQL Project
+      uses: azure/sql-action@v2.2.1
+      with:
+          connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
+          path: './testing.sql'
+          action: 'publish'
     - name: Logout
       run: az logout
