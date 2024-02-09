@@ -17,11 +17,29 @@ jobs:
     - uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-    - name: Deploy SQL Project
+    - name: Deploy DDL Procedures
       uses: azure/sql-action@v2.2.1
       with:
           connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
-          path: './testing.sql'
+          path: './DDL/StoredProcedures/*.sql'
           action: 'publish'
+    - name: Deploy DML Procedures
+      uses: azure/sql-action@v2.2.1
+      with:
+          connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
+          path: './DML/StoredProcedures/*.sql'
+          action: 'publish'
+    - name: Deploy DDL Functions
+      uses: azure/sql-action@v2.2.1
+      with:
+          connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
+          path: './DDL/Functions/*.sql'
+          action: 'publish'
+    - name: Deploy DML Functions
+      uses: azure/sql-action@v2.2.1
+      with:
+          connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
+          path: './DML/Functions/*.sql'
+          action: 'publish'          
     - name: Logout
       run: az logout
