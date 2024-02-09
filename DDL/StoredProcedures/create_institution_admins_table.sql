@@ -9,7 +9,7 @@ BEGIN
        InstitutionID INT NOT NULL,	
        UserID INT NOT NULL,
        DepartmentName VARCHAR(120) NOT NULL,
-       Posittion VARCHAR(100) NOT NULL,
+       Position VARCHAR(100) NOT NULL,
        Email VARCHAR(120) NOT NULL, 
        InstitutionType VARCHAR(100) NOT NULL,
        CONSTRAINT PK_InstitutionAdminID PRIMARY KEY (InstitutionAdminID),
