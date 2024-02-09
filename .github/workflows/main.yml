@@ -34,7 +34,7 @@ jobs:
           # Loop through SQL files and execute them
           # for file in "${sql_files[@]}"; do
           #   echo "Executing SQL script: $file"
-            az sql db exec-mssql-command --connection-string ${{ secrets.AZURE_SQL_CONNECTION_STRING }} --input-file ./testing.sql
+            az sql db exec-mssql-command --connection-string ${{ secrets.AZURE_SQL_CONNECTION_STRING }} --query "$(cat ./testing.sql)"
           done
         else
           echo "Workflow not triggered for this event."
