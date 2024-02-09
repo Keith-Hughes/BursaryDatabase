@@ -1,26 +1,43 @@
 name: SQL for GitHub Actions
 
 on:
-    push:
-        branches: [ main ]
-    pull_request:
-        branches: [ main ]
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - closed
 
 jobs:
-    build:
-        runs-on: windows-latest
-        steps:
-         - uses: actions/checkout@v1
-         - uses: azure/login@v1
-           with:
-            creds: ${{ secrets.AZURE_CREDENTIALS }}
-         - uses: azure/sql-action@v2
-           with:
-            connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
-            path: './bursaryDB.dacpac'
-            action: 'Publish'
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - name: Execute SQL Scripts
+      run: |
+        # Check if the event is a pull_request and if it's merged
+        if [ "${{ github.event_name }}" == "pull_request" ] && [ "${{ github.event.pull_request.merged }}" == "true" ]||
+           [ "${{ github.event_name }}" == "push" ]; then
 
-            # Azure logout 
-         - name: logout
-           run: |
-              az logout
+          echo "Executing SQL scripts."
+
+          # Define the path to your SQL files
+          # sql_files_path='./sql-scripts'
+          
+          # Get a list of SQL files
+          # sql_files=($(find $sql_files_path -name '*.sql'))
+
+          # Loop through SQL files and execute them
+          # for file in "${sql_files[@]}"; do
+          #   echo "Executing SQL script: $file"
+            az sql db exec-mssql-command --connection-string ${{ secrets.AZURE_SQL_CONNECTION_STRING }} --input-file ./testing.sql
+          done
+        else
+          echo "Workflow not triggered for this event."
+        fi
+
+    - name: Logout
+      run: az logout
