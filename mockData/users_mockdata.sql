@@ -1,0 +1,11 @@
+INSERT INTO Users (FirstName, LastName, Username, Password, Email, Address, RoleID) VALUES
+('Thabo', 'Mahlangu', 'tmahlangu', 'a3f5b1c9d10e8f5b5f32f7d5a7d6c8f1', 'tmahlangu@example.com', '12 Main Street, Johannesburg, 2000', 1),
+('Lerato', 'Nkosi', 'lnkosi', 'b4c6d2e0f21a9f6c6f43e8e6b8e7d9f2', 'lnkosi@example.com', '34 Second Avenue, Johannesburg, 2001', 2),
+('Sipho', 'Dlamini', 'sdlamini', 'c7d8e3f1g32b0g7d7f54f9f7c9f8e0f3', 'sdlamini@example.com', '56 Third Road, Johannesburg, 2002', 1),
+('Nomsa', 'Moyo', 'nmoyo', 'd8e9f4g2h43c1h8e8g65g0g8d0g9f1g4', 'nmoyo@example.com', '78 Fourth Street, Johannesburg, 2003', 2),
+('Tshepo', 'Molefe', 'tmolefe', 'e9f0g5h3i54d2i9f9h76h1h9e1h0g2h5', 'tmolefe@example.com', '90 Fifth Avenue, Johannesburg, 2004', 1),
+('Zanele', 'Khumalo', 'zkhumalo', 'f0g1h6i4j65e3j0g0i87i2i0f2i1h3i6', 'zkhumalo@example.com', '12 Sixth Road, Johannesburg, 2005', 2),
+('Musa', 'Ngwenya', 'mngwenya', 'g1h2i7j5k76f4k1h1j98j3j1g3j2i4j7', 'mngwenya@example.com', '34 Seventh Street, Johannesburg, 2006', 2),
+('Nandi', 'Zulu', 'nzulu', 'h2i3j8k6l87g5l2i2k09k4k2h4k3j5k8', 'nzulu@example.com', '56 Eighth Avenue, Johannesburg, 2007', 2),
+('Lucky', 'Mokoena', 'lmokoena', 'i3j4k9l7m98h6m3j3l10l5l3i5l4k6l9', 'lmokoena@example.com', '78 Ninth Road, Johannesburg, 2008', 2),
+('Busi', 'Sithole', 'bsithole', 'j4k5l10m9n10i7n4k4m11m6m4j6m5l7m10', 'bsithole@example.com', '90 Tenth Street, Johannesburg, 2009', 2);
