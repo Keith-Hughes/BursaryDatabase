@@ -6,7 +6,7 @@ CREATE TABLE StudentRequests(
     Motivation VARBINARY NOT NULL,
     Amount MONEY NOT NULL,
     RequestStatus VARCHAR(20),
-    Approved BOOLEAN,
+    StatusID INT FOREIGN KEY REFERENCES Status(StatusID),
     DateOfRequestSent DATE NOT NULL,
     DateOfStatusUpdate DATE,
     InstitutionAdminsID INT FOREIGN KEY REFERENCES InstitutionAdmins(InstitutionAdminID) NOT NULL,
