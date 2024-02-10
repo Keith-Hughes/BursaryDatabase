@@ -58,7 +58,7 @@ jobs:
       
     - name: Check if files exist
       run: |
-        $sqlFiles = Get-ChildItem -Path DML\StoredProcedures\ -Filter *.sql
+        $sqlFiles = Get-ChildItem -Path DML\StoreProcedures\ -Filter *.sql
         if ($sqlFiles.Count -gt 0) {
           Write-Output "SQL files exist in the DML/StoredProcedures folder. Proceeding with deployment."
           Write-Output "::set-output name=deploy::true"  # Set an output variable to indicate deployment
