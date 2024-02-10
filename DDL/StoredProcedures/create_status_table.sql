@@ -1,0 +1,6 @@
+CREATE PROCEDURE CreateStatusTable
+AS
+CREATE TABLE Statuses(
+    StatusID INT IDENTITY(1,1) PRIMARY KEY,
+    StatusName VARCHAR(10)
+)
