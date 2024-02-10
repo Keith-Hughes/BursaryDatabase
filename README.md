@@ -181,7 +181,7 @@ END CATCH
 
 DECLARE @RequestID INT = 123; -- Replace with the actual RequestID
 DECLARE @Document VARBINARY(MAX) = 0x546869732069732061206e657720646f63756d656e74; -- Replace with actual binary data
-DECLARE @DocumentType VARCHAR(20) = 'Invoice'; -- Replace with the actual document type
+DECLARE @DocumentType VARCHAR(20) = 'CV'; -- Replace with the actual document type
 
 -- Execute the procedure
 EXEC AddNewDocument 
