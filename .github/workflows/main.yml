@@ -17,43 +17,62 @@ jobs:
       uses: actions/checkout@v1
 
   deploy_ddl_procedures:
-    
     needs: build
     runs-on: windows-latest
-    if: (find DDL/Procedures -type f -name '*.sql' | wc -l) -gt 0 
     steps:
     - name: Checkout code
       uses: actions/checkout@v1
+    - name: Check if files exist
+      run: |
+        if [ -n "$(find DDL/StoredProcedures/ -type f -name '*.sql')" ]; then
+          echo "SQL files exist in the DDL/StoredProcedures/ folder. Proceeding with deployment."
+          echo "::set-output name=deploy::true"  # Set an output variable to indicate deployment
+        else
+          echo "No SQL files found in the DDL/StoredProcedures/ folder. Skipping deployment."
+          echo "::set-output name=deploy::false"  # Set an output variable to indicate skipping deployment
+        fi        
     - name: Azure Login
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
+      if: ${{ steps.check_files.outputs.deploy == 'true' }}
     - name: Deploy DDL Procedures
       uses: azure/sql-action@v2.2.1
       with:
           connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
           path: './DDL/StoredProcedures/*.sql'
           action: 'publish'
+      if: ${{ steps.check_files.outputs.deploy == 'true' }}
     - name: Logout
       run: az logout
 
   deploy_dml_procedures:
     needs: build
     runs-on: windows-latest
-    if: (find DML/Procedures -type f -name '*.sql' | wc -l) -gt 0
     steps:
     - name: Checkout code
       uses: actions/checkout@v1
+    - name: Check if files exist
+      run: |
+        if [ -n "$(find DML/StoredProcedures/ -type f -name '*.sql')" ]; then
+          echo "SQL files exist in the DML/StoredProcedures/ folder. Proceeding with deployment."
+          echo "::set-output name=deploy::true"  # Set an output variable to indicate deployment
+        else
+          echo "No SQL files found in the DML/StoredProcedures/ folder. Skipping deployment."
+          echo "::set-output name=deploy::false"  # Set an output variable to indicate skipping deployment
+        fi      
     - name: Azure Login
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
+      if: ${{ steps.check_files.outputs.deploy == 'true' }}
     - name: Deploy DML Procedures
       uses: azure/sql-action@v2.2.1
       with:
           connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
           path: './DML/StoredProcedures/*.sql'
           action: 'publish'
+      if: ${{ steps.check_files.outputs.deploy == 'true' }}
     - name: Logout
       run: az logout
 
