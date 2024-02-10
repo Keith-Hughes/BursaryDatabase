@@ -1,3 +1,0 @@
-CREATE TABLE TESTING(
-ID int)
-
