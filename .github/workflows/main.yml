@@ -24,15 +24,7 @@ jobs:
       uses: actions/checkout@v1
     - name: Check if files exist
       run: |
-        $sqlFiles = Get-ChildItem -Path DDL\StoredProcedures\ -Filter *.sql
-        if ($sqlFiles.Count -gt 0) {
-          Write-Output "SQL files exist in the DDL/StoredProcedures folder. Proceeding with deployment."
-          echo "deploy=true" >> $GITHUB_ENV
-          Write-Output "${{ env.deploy }}"
-        } else {
-          Write-Output "No SQL files found in the DDL/StoredProcedures folder. Skipping deployment."
-          echo "deploy=false" >> $GITHUB_ENV
-        }
+        .\check_files_exist.ps1 -sqlFolderPath "DDL\StoredProcedures\"
     - name: Join SQL Files
       run: |
         .\join_sql_files.ps1 -sqlFolderPath "DDL\StoredProcedures\" -outputFolderPath "DDL\StoredProcedures\" -outputFileName "DDLProcedures.sql"
@@ -63,14 +55,7 @@ jobs:
       
     - name: Check if files exist
       run: |
-        $sqlFiles = Get-ChildItem -Path DML\StoreProcedures\ -Filter *.sql
-        if ($sqlFiles.Count -gt 0) {
-          Write-Output "SQL files exist in the DML/StoreProcedures folder. Proceeding with deployment."
-          echo "deploy=true" >> $GITHUB_STATE/deploy
-        } else {
-          Write-Output "No SQL files found in the DML/StoreProcedures folder. Skipping deployment."
-          echo "deploy=false" >> $GITHUB_STATE/deploy
-        }
+        .\check_files_exist.ps1 -sqlFolderPath DML\StoreProcedures\
     - name: Join SQL Files
       run: |
         .\join_sql_files.ps1 -sqlFolderPath "DML\StoreProcedures\" -outputFolderPath "DML\StoreProcedures\" -outputFileName "DMLProcedures.sql"
@@ -101,14 +86,7 @@ jobs:
       uses: actions/checkout@v1
     - name: Check if files exist
       run: |
-        $sqlFiles = Get-ChildItem -Path DDL\Functions\ -Filter *.sql
-        if ($sqlFiles.Count -gt 0) {
-          Write-Output "SQL files exist in the DDL\Functions folder. Proceeding with deployment."
-          echo "deploy=true" >> $GITHUB_STATE/deploy
-        } else {
-          Write-Output "No SQL files found in the DDL\Functions folder. Skipping deployment."
-          echo "deploy=false" >> $GITHUB_STATE/deploy
-        }
+        .\check_files_exist.ps1 -sqlFolderPath DDL\Functions\
     - name: Join SQL Files
       run: |
         .\join_sql_files.ps1 -sqlFolderPath "DDL\Functions\" -outputFolderPath "DDL\Functions\" -outputFileName "DDLFunctions.sql"
@@ -138,14 +116,7 @@ jobs:
       uses: actions/checkout@v1
     - name: Check if files exist
       run: |
-        $sqlFiles = Get-ChildItem -Path DML\Functions\ -Filter *.sql
-        if ($sqlFiles.Count -gt 0) {
-          Write-Output "SQL files exist in the DML\Functions folder. Proceeding with deployment."
-          echo "deploy=true" >> $GITHUB_STATE/deploy
-        } else {
-          Write-Output "No SQL files found in the DML\Functions folder. Skipping deployment."
-          echo "deploy=false" >> $GITHUB_STATE/deploy
-        }
+        .\check_files_exist.ps1 -sqlFolderPath DML\Functions\
     - name: Join SQL Files
       run: |
         .\join_sql_files.ps1 -sqlFolderPath "DML\Functions\" -outputFolderPath "DML\Functions\" -outputFileName "DMLFunctions.sql"
