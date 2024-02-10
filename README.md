@@ -86,7 +86,7 @@ DECLARE @InstitutionAdminsID INT = 101;
 DECLARE @BBDAdminID INT = NULL; -- Optional parameter, set to NULL
 DECLARE @StatusID INT = 1; -- Default value if not provided
 DECLARE @Motivation VARBINARY(MAX) = 0x546869732069732061206d6f7469766174696f6e2e; -- Example binary data
-DECLARE @Race VARCHAR(20) = 'Unknown';
+DECLARE @Race VARCHAR(20) = 'African';
 
 -- Execute the procedure
 EXEC CreateStudentRequest 
