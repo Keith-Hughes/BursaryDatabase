@@ -24,13 +24,14 @@ jobs:
       uses: actions/checkout@v1
     - name: Check if files exist
       run: |
-        if [ -n "$(find DDL/StoredProcedures/ -type f -name '*.sql')" ]; then
-          echo "SQL files exist in the DDL/StoredProcedures/ folder. Proceeding with deployment."
-          echo "::set-output name=deploy::true"  # Set an output variable to indicate deployment
-        else
-          echo "No SQL files found in the DDL/StoredProcedures/ folder. Skipping deployment."
-          echo "::set-output name=deploy::false"  # Set an output variable to indicate skipping deployment
-        fi        
+        $sqlFiles = Get-ChildItem -Path DDL\StoredProcedures\ -Filter *.sql
+        if ($sqlFiles.Count -gt 0) {
+          Write-Output "SQL files exist in the DDL/StoredProcedures folder. Proceeding with deployment."
+          Write-Output "::set-output name=deploy::true"  # Set an output variable to indicate deployment
+        } else {
+          Write-Output "No SQL files found in the DDL/StoredProcedures folder. Skipping deployment."
+          Write-Output "::set-output name=deploy::false"  # Set an output variable to indicate skipping deployment
+        }      
     - name: Azure Login
       uses: azure/login@v1
       with:
@@ -54,13 +55,14 @@ jobs:
       uses: actions/checkout@v1
     - name: Check if files exist
       run: |
-        if [ -n "$(find DML/StoredProcedures/ -type f -name '*.sql')" ]; then
-          echo "SQL files exist in the DML/StoredProcedures/ folder. Proceeding with deployment."
-          echo "::set-output name=deploy::true"  # Set an output variable to indicate deployment
-        else
-          echo "No SQL files found in the DML/StoredProcedures/ folder. Skipping deployment."
-          echo "::set-output name=deploy::false"  # Set an output variable to indicate skipping deployment
-        fi      
+        $sqlFiles = Get-ChildItem -Path DML\StoredProcedures\ -Filter *.sql
+        if ($sqlFiles.Count -gt 0) {
+          Write-Output "SQL files exist in the DML/StoredProcedures folder. Proceeding with deployment."
+          Write-Output "::set-output name=deploy::true"  # Set an output variable to indicate deployment
+        } else {
+          Write-Output "No SQL files found in the DML/StoredProcedures folder. Skipping deployment."
+          Write-Output "::set-output name=deploy::false"  # Set an output variable to indicate skipping deployment
+        }      
     - name: Azure Login
       uses: azure/login@v1
       with:
