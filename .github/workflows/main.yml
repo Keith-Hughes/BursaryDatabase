@@ -32,7 +32,11 @@ jobs:
         } else {
           Write-Output "No SQL files found in the DDL/StoredProcedures folder. Skipping deployment."
           echo "deploy=false" >> $GITHUB_ENV
-        }      
+        }
+    - name: Join SQL Files
+      run: |
+        .\join_sql_files.ps1 -sqlFolderPath "DDL\StoredProcedures\" -outputFolderPath "DDL\StoredProcedures\" -outputFileName "DDLProcedures.sql"
+      if: ${{ env.deploy }} == "true"   
     - name: Azure Login
       uses: azure/login@v1
       with:
@@ -42,7 +46,7 @@ jobs:
       uses: azure/sql-action@v2.2.1
       with:
           connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
-          path: './DDL/StoredProcedures/*.sql'
+          path: './DDL/StoredProcedures/DDLProcedures.sql'
           action: 'publish'
       if: ${{ env.deploy }} == "true"
     - name: Logout
@@ -61,12 +65,16 @@ jobs:
       run: |
         $sqlFiles = Get-ChildItem -Path DML\StoreProcedures\ -Filter *.sql
         if ($sqlFiles.Count -gt 0) {
-          Write-Output "SQL files exist in the DML/StoredProcedures folder. Proceeding with deployment."
+          Write-Output "SQL files exist in the DML/StoreProcedures folder. Proceeding with deployment."
           echo "deploy=true" >> $GITHUB_STATE/deploy
         } else {
-          Write-Output "No SQL files found in the DML/StoredProcedures folder. Skipping deployment."
+          Write-Output "No SQL files found in the DML/StoreProcedures folder. Skipping deployment."
           echo "deploy=false" >> $GITHUB_STATE/deploy
-        }      
+        }
+    - name: Join SQL Files
+      run: |
+        .\join_sql_files.ps1 -sqlFolderPath "DML\StoreProcedures\" -outputFolderPath "DML\StoreProcedures\" -outputFileName "DMLProcedures.sql"
+      if: ${{ env.deploy }} == "true"           
     - name: Azure Login
       uses: azure/login@v1
       with:
@@ -76,7 +84,7 @@ jobs:
       uses: azure/sql-action@v2.2.1
       with:
           connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
-          path: './DML/StoredProcedures/*.sql'
+          path: './DML/StoreProcedures/DMLProcedures.sql'
           action: 'publish'
       if: env.GITHUB_STATE_deploy == 'true'
     - name: Logout
@@ -100,7 +108,11 @@ jobs:
         } else {
           Write-Output "No SQL files found in the DDL\Functions folder. Skipping deployment."
           echo "deploy=false" >> $GITHUB_STATE/deploy
-        }       
+        }
+    - name: Join SQL Files
+      run: |
+        .\join_sql_files.ps1 -sqlFolderPath "DDL\Functions\" -outputFolderPath "DDL\Functions\" -outputFileName "DDLFunctions.sql"
+      if: ${{ env.deploy }} == "true"  
     - name: Azure Login
       uses: azure/login@v1
       with:
@@ -110,7 +122,7 @@ jobs:
       uses: azure/sql-action@v2.2.1
       with:
           connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
-          path: './DDL/Functions/*.sql'
+          path: './DDL/Functions/DDLFunctions.sql'
           action: 'publish'
       if: env.GITHUB_STATE_deploy == 'true'
     - name: Logout
@@ -133,7 +145,11 @@ jobs:
         } else {
           Write-Output "No SQL files found in the DML\Functions folder. Skipping deployment."
           echo "deploy=false" >> $GITHUB_STATE/deploy
-        }      
+        }
+    - name: Join SQL Files
+      run: |
+        .\join_sql_files.ps1 -sqlFolderPath "DML\Functions\" -outputFolderPath "DML\Functions\" -outputFileName "DMLFunctions.sql"
+      if: ${{ env.deploy }} == "true"  
     - name: Azure Login
       uses: azure/login@v1
       with:
@@ -143,7 +159,7 @@ jobs:
       uses: azure/sql-action@v2.2.1
       with:
           connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
-          path: './DML/Functions/*.sql'
+          path: './DML/Functions/DMLFunctions.sql'
           action: 'publish'
       if: env.GITHUB_STATE_deploy == 'true'          
     - name: Logout
