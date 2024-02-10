@@ -60,7 +60,9 @@ To initialize the database and populate constant data, follow these steps:
 The system provides various procedures to perform specific tasks. Execute these procedures to achieve different functionalities:
 
 - CreateStudentRequest: Populates the relavent tables when a new student request is submitted.
-Parameters:
+
+#### Parameters:
+
 @FirstName VARCHAR(120), 
 @LastName VARCHAR(120), 
 @DateOfBirth DATE, 
@@ -72,7 +74,7 @@ Parameters:
 @StatusID INT= 1,
 @Movtivation VARBINARY(MAX),
 @Race VARCHAR(20)
-EXAMPLE:
+##### EXAMPLE:
 ```sql
 -- Example execution of the CreateStudentRequest procedure
 
@@ -101,6 +103,75 @@ EXEC CreateStudentRequest
     @StatusID,
     @Motivation,
     @Race;
+```
+#### Procedure Definition
+```sql
+CREATE PROCEDURE CreateStudentRequest 
+@FirstName VARCHAR(120), 
+@LastName VARCHAR(120), 
+@DateOfBirth DATE, 
+@Amount MONEY, 
+@StatusName VARCHAR(10), 
+@InstitutionID INT, 
+@InstitutionAdminsID INT,
+@BBDAdminID INT = NuLL,
+@StatusID INT= 1,
+@Movtivation VARBINARY(MAX),
+@Race VARCHAR(20)
+
+AS
+
+BEGIN TRANSACTION InsertStudentRequest;
+BEGIN TRY
+INSERT INTO Students(
+    InstitutionID,
+    FirstName,
+    LastName,
+    DateOfBirth,
+    Department,
+    RaceID
+
+)
+VALUES (
+    @InstitutionID,
+    @FirstName,
+    @LastName,
+    @DateOfBirth,
+    (SELECT DepartmentName FROM InstutionAdmins
+    WHERE InstitutionID=@InstitutionID),
+    (SELECT RaceID FROM Races
+    WHERE Race=@Race)
+);
+
+
+INSERT INTO StudentRequests(
+    StudentID,
+    Motivation,
+    Amount,
+    DateOfRequestSent,
+    DateOfStatusUpdate,
+    StatusID,
+    InstitutionAdminsID,
+    InstitutionID
+)
+VALUES(
+    (SELECT StudentID
+FROM Students
+WHERE StudentID = (SELECT MAX(StudentID) FROM Students)),
+    @Motivation,
+    @Amount,
+    CONVERT(DATE, GETDATE()),
+    CONVERT(DATE, GETDATE()),
+    @StatusID,
+    @InstitutionAdminsID,
+    @InstitutionID
+
+);
+COMMIT;
+END TRY
+BEGIN CATCH
+ROLLBACK;
+END CATCH
 ```
 
 - Procedure 2: [Description and example command]
