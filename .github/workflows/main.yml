@@ -46,6 +46,8 @@ jobs:
       if: ${{ steps.check_files.outputs.deploy == 'true' }}
     - name: Logout
       run: az logout
+      if: ${{ steps.check_files.outputs.deploy == 'true' }}
+
 
   deploy_dml_procedures:
     needs: build
@@ -53,6 +55,7 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v1
+      
     - name: Check if files exist
       run: |
         $sqlFiles = Get-ChildItem -Path DML\StoredProcedures\ -Filter *.sql
@@ -77,6 +80,8 @@ jobs:
       if: ${{ steps.check_files.outputs.deploy == 'true' }}
     - name: Logout
       run: az logout
+      if: ${{ steps.check_files.outputs.deploy == 'true' }}
+
 
   deploy_ddl_functions:
     if: ${{ github.event.pull_request.merged == 'true' || github.event_name == 'push' }}
@@ -85,18 +90,31 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v1
+    - name: Check if files exist
+      run: |
+        $sqlFiles = Get-ChildItem -Path DDL\Functions\ -Filter *.sql
+        if ($sqlFiles.Count -gt 0) {
+          Write-Output "SQL files exist in the DDL\Functions folder. Proceeding with deployment."
+          Write-Output "::set-output name=deploy::true"  # Set an output variable to indicate deployment
+        } else {
+          Write-Output "No SQL files found in the DDL\Functions folder. Skipping deployment."
+          Write-Output "::set-output name=deploy::false"  # Set an output variable to indicate skipping deployment
+        }       
     - name: Azure Login
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
+      if: ${{ steps.check_files.outputs.deploy == 'true' }}
     - name: Deploy DDL Functions
       uses: azure/sql-action@v2.2.1
       with:
           connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
           path: './DDL/Functions/*.sql'
           action: 'publish'
+      if: ${{ steps.check_files.outputs.deploy == 'true' }}          
     - name: Logout
       run: az logout
+      if: ${{ steps.check_files.outputs.deploy == 'true' }}
 
   deploy_dml_functions:
     if: ${{ github.event.pull_request.merged == 'true' || github.event_name == 'push' }}
@@ -105,15 +123,28 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v1
+    - name: Check if files exist
+      run: |
+        $sqlFiles = Get-ChildItem -Path DML\Functions\ -Filter *.sql
+        if ($sqlFiles.Count -gt 0) {
+          Write-Output "SQL files exist in the DML\Functions folder. Proceeding with deployment."
+          Write-Output "::set-output name=deploy::true"  # Set an output variable to indicate deployment
+        } else {
+          Write-Output "No SQL files found in the DML\Functions folder. Skipping deployment."
+          Write-Output "::set-output name=deploy::false"  # Set an output variable to indicate skipping deployment
+        }      
     - name: Azure Login
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
+      if: ${{ steps.check_files.outputs.deploy == 'true' }}
     - name: Deploy DML Functions
       uses: azure/sql-action@v2.2.1
       with:
           connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
           path: './DML/Functions/*.sql'
           action: 'publish'
+      if: ${{ steps.check_files.outputs.deploy == 'true' }}          
     - name: Logout
       run: az logout
+      if: ${{ steps.check_files.outputs.deploy == 'true' }}
