@@ -17,7 +17,7 @@ jobs:
       uses: actions/checkout@v1
 
   deploy_ddl_procedures:
-    if: ("$(find DDL/Procedures -type f -name '*.sql' | wc -l)" -gt 0)    
+    if: $(find DDL/Procedures -type f -name '*.sql' | wc -l) -gt 0 
     needs: build
     runs-on: windows-latest
     steps:
@@ -37,7 +37,7 @@ jobs:
       run: az logout
 
   deploy_dml_procedures:
-    if: ("$(find DML/Procedures -type f -name '*.sql' | wc -l)" -gt 0)
+    if: $(find DML/Procedures -type f -name '*.sql' | wc -l) -gt 0
     needs: build
     runs-on: windows-latest
     steps:
