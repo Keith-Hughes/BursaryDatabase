@@ -40,14 +40,12 @@ To initialize the database and populate constant data, follow these steps:
 1. Execute the `create_tables.sql` procedure to create all necessary tables.
 
     ```sql
-    -- Example command to execute the procedure
     EXEC create_tables;
     ```
 
 2. Execute the `populate_constants.sql` procedure to populate constant data.
 
     ```sql
-    -- Example command to execute the procedure
     EXEC populate_constants;
     ```
 
@@ -61,7 +59,50 @@ To initialize the database and populate constant data, follow these steps:
 
 The system provides various procedures to perform specific tasks. Execute these procedures to achieve different functionalities:
 
-- Procedure 1: [Description and example command]
+- CreateStudentRequest: Populates the relavent tables when a new student request is submitted.
+Parameters:
+@FirstName VARCHAR(120), 
+@LastName VARCHAR(120), 
+@DateOfBirth DATE, 
+@Amount MONEY, 
+@StatusName VARCHAR(10), 
+@InstitutionID INT, 
+@InstitutionAdminsID INT,
+@BBDAdminID INT = NuLL,
+@StatusID INT= 1,
+@Movtivation VARBINARY(MAX),
+@Race VARCHAR(20)
+EXAMPLE:
+```sql
+-- Example execution of the CreateStudentRequest procedure
+
+DECLARE @FirstName VARCHAR(120) = 'John';
+DECLARE @LastName VARCHAR(120) = 'Doe';
+DECLARE @DateOfBirth DATE = '1990-01-15';
+DECLARE @Amount MONEY = 5000.00;
+DECLARE @StatusName VARCHAR(10) = 'Pending';
+DECLARE @InstitutionID INT = 1;
+DECLARE @InstitutionAdminsID INT = 101;
+DECLARE @BBDAdminID INT = NULL; -- Optional parameter, set to NULL
+DECLARE @StatusID INT = 1; -- Default value if not provided
+DECLARE @Motivation VARBINARY(MAX) = 0x546869732069732061206d6f7469766174696f6e2e; -- Example binary data
+DECLARE @Race VARCHAR(20) = 'Unknown';
+
+-- Execute the procedure
+EXEC CreateStudentRequest 
+    @FirstName,
+    @LastName,
+    @DateOfBirth,
+    @Amount,
+    @StatusName,
+    @InstitutionID,
+    @InstitutionAdminsID,
+    @BBDAdminID,
+    @StatusID,
+    @Motivation,
+    @Race;
+```
+
 - Procedure 2: [Description and example command]
 - ...
 
