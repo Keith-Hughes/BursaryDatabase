@@ -174,7 +174,43 @@ ROLLBACK;
 END CATCH
 ```
 
-- Procedure 2: [Description and example command]
+- AddNewDocument: Saves the document to the database and allocates it to a Student request
+#### EXAMPLE:
+```sql
+-- Example execution of the AddNewDocument procedure
+
+DECLARE @RequestID INT = 123; -- Replace with the actual RequestID
+DECLARE @Document VARBINARY(MAX) = 0x546869732069732061206e657720646f63756d656e74; -- Replace with actual binary data
+DECLARE @DocumentType VARCHAR(20) = 'Invoice'; -- Replace with the actual document type
+
+-- Execute the procedure
+EXEC AddNewDocument 
+    @RequestID,
+    @Document,
+    @DocumentType;
+```
+#### Procedure Definition
+```sql
+CREATE PROCEDURE AddNewDocument 
+@RequestID INT,
+@Document VARBINARY(MAX),
+@DocumentType VARCHAR(20)
+
+AS
+
+INSERT INTO Documents(
+    Document,
+    UploadDate,
+    DocumentTypeID,
+    RequestID
+)
+VALUES(
+    @Document,
+    CONVERT(DATE, GETDATE()),
+    (SELECT DocumentTypeID FROM DocumentTypes WHERE DocumentType=@DocumentType)
+)
+
+```
 - ...
 
 ### System Workflow
