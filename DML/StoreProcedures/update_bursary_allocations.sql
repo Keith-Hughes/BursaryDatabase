@@ -1,4 +1,4 @@
-CREATE PROCEDURE CreateUpdateAllocations @Amount MONEY, @StudentID INT
+CREATE PROCEDURE UpdateBursaryAllocations @Amount MONEY, @StudentID INT
 AS
 UPDATE BursaryAllocations
 SET AllocationUsed = AllocationUsed + @Amount

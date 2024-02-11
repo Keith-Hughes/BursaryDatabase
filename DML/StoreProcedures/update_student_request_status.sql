@@ -1,4 +1,4 @@
-CREATE PROCEDURE CreateStatusChange @Status VARCHAR(10), @RequestID INT, @BBDAdminID INT
+CREATE PROCEDURE UpdateStudentRequestStatus @Status VARCHAR(10), @RequestID INT, @BBDAdminID INT
 AS
 
 UPDATE StudentRequests
