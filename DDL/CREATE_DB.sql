@@ -112,7 +112,7 @@ CREATE TABLE [dbo].[Qualifications] (
 
 
 
-CREATE TABLE [Bursary] (
+CREATE TABLE [dbo].[Bursary] (
   [BursaryID] INT PRIMARY KEY IDENTITY(1,1),
   [BursaryName] VARCHAR(120),
   [Description] VARCHAR(255),
@@ -122,3 +122,13 @@ CREATE TABLE [Bursary] (
   
 );
 
+
+
+CREATE TABLE [dbo].[Documents] (
+  [DocumentID] INT,
+  [File] VARBINARY(MAX),
+  [UploadDate] DATE,
+  [DocumentTypeID] INT,
+  [RequestID] INT,
+  PRIMARY KEY ([DocumentID])
+);
