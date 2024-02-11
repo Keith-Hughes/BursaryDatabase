@@ -41,6 +41,12 @@ jobs:
           path: './DDL/StoredProcedures/DDLProcedures.sql'
           action: 'publish'
       if: ${{ env.deploy }} == "true"
+    - name: Upload DDL Procedure as Artifact 
+      uses: actions/upload-artifact@v2
+      with:
+        name: ddl-procedures-artifact
+        path: './DDL/StoredProcedures/DDLProcedures.sql'
+      if: ${{ env.deploy }} == "true"  
     - name: Logout
       run: az logout
       if: ${{ env.deploy }} == "true"
@@ -72,6 +78,12 @@ jobs:
           path: './DML/StoreProcedures/DMLProcedures.sql'
           action: 'publish'
       if: env.GITHUB_STATE_deploy == 'true'
+    - name: Upload DML Procedures as Artifact 
+      uses: actions/upload-artifact@v2
+      with:
+        name: dml-procedures-artifact
+        path: './DML/StoreProcedures/DMLProcedures.sql'
+      if: ${{ env.deploy }} == "true"      
     - name: Logout
       run: az logout
       if: env.GITHUB_STATE_deploy == 'true'
@@ -103,6 +115,12 @@ jobs:
           path: './DDL/Functions/DDLFunctions.sql'
           action: 'publish'
       if: env.GITHUB_STATE_deploy == 'true'
+    - name: Upload DDL Functions as Artifact 
+      uses: actions/upload-artifact@v2
+      with:
+        name: ddl-functions-artifact
+        path: './DDL/Functions/DDLFunctions.sql'
+      if: ${{ env.deploy }} == "true"
     - name: Logout
       run: az logout
       if: env.GITHUB_STATE_deploy == 'true'
@@ -132,7 +150,13 @@ jobs:
           connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
           path: './DML/Functions/DMLFunctions.sql'
           action: 'publish'
-      if: env.GITHUB_STATE_deploy == 'true'          
+      if: env.GITHUB_STATE_deploy == 'true' 
+    - name: Upload DDL Functions as Artifact 
+      uses: actions/upload-artifact@v2
+      with:
+        name: dml-functions-artifact
+        path: './DML/Functions/DMLFunctions.sql'
+      if: ${{ env.deploy }} == "true"
     - name: Logout
       run: az logout
       if: env.GITHUB_STATE_deploy == 'true'
