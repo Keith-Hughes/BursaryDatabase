@@ -1,0 +1,159 @@
+name: SQL for GitHub Actions
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    
+    runs-on: windows-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v1
+
+  deploy_ddl_procedures:
+    needs: build
+    runs-on: windows-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v1
+    - name: Check if files exist
+      run: |
+        .\check_files_exist.ps1 -sqlFolderPath "DDL\StoredProcedures\"
+    - name: Debug
+      run: echo "Deploy=${{ env.deploy}}" 
+    - name: Join SQL Files
+      run: |
+        .\join_sql_files.ps1 -sqlFolderPath "DDL\StoredProcedures\" -outputFolderPath "DDL\StoredProcedures\" -outputFileName "DDLProcedures.sql"
+      if: ${{ env.deploy =='true' }} 
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+      if: ${{ env.deploy =='true' }} 
+    - name: Deploy DDL Procedures
+      uses: azure/sql-action@v2.2.1
+      with:
+          connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
+          path: './DDL/StoredProcedures/DDLProcedures.sql'
+          action: 'publish'
+      if: ${{ env.deploy =='true' }} 
+    - name: Upload DDL Procedure as Artifact 
+      uses: actions/upload-artifact@v2
+      with:
+        name: ddl-procedures-artifact
+        path: './DDL/StoredProcedures/DDLProcedures.sql'
+      if: ${{ env.deploy =='true' }} 
+    - name: Logout
+      run: az logout
+      if: ${{ env.deploy =='true' }} 
+
+
+  deploy_dml_procedures:
+    needs: build
+    runs-on: windows-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v1
+      
+    - name: Check if files exist
+      run: |
+        .\check_files_exist.ps1 -sqlFolderPath DML\StoreProcedures\
+    - name: Join SQL Files
+      run: |
+        .\join_sql_files.ps1 -sqlFolderPath "DML\StoreProcedures\" -outputFolderPath "DML\StoreProcedures\" -outputFileName "DMLProcedures.sql"
+      if: ${{ env.deploy =='true' }} 
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+      if: ${{ env.deploy =='true' }} 
+    - name: Deploy DML Procedures
+      uses: azure/sql-action@v2.2.1
+      with:
+          connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
+          path: './DML/StoreProcedures/DMLProcedures.sql'
+          action: 'publish'
+      if: ${{ env.deploy =='true' }} 
+    - name: Upload DML Procedures as Artifact 
+      uses: actions/upload-artifact@v2
+      with:
+        name: dml-procedures-artifact
+        path: './DML/StoreProcedures/DMLProcedures.sql'
+      if: ${{ env.deploy =='true' }} 
+    - name: Logout
+      run: az logout
+      if: ${{ env.deploy =='true' }} 
+
+
+  deploy_ddl_functions:
+    needs: build
+    runs-on: windows-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v1
+    - name: Check if files exist
+      run: |
+        .\check_files_exist.ps1 -sqlFolderPath DDL\Functions\
+    - name: Join SQL Files
+      run: |
+        .\join_sql_files.ps1 -sqlFolderPath "DDL\Functions\" -outputFolderPath "DDL\Functions\" -outputFileName "DDLFunctions.sql"
+      if: ${{ env.deploy =='true' }} 
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+      if: ${{ env.deploy =='true' }} 
+    - name: Deploy DDL Functions
+      uses: azure/sql-action@v2.2.1
+      with:
+          connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
+          path: './DDL/Functions/DDLFunctions.sql'
+          action: 'publish'
+      if: ${{ env.deploy =='true' }} 
+    - name: Upload DDL Functions as Artifact 
+      uses: actions/upload-artifact@v2
+      with:
+        name: ddl-functions-artifact
+        path: './DDL/Functions/DDLFunctions.sql'
+      if: ${{ env.deploy =='true' }} 
+    - name: Logout
+      run: az logout
+      if: ${{ env.deploy =='true' }} 
+
+  deploy_dml_functions:
+    needs: build
+    runs-on: windows-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v1
+    - name: Check if files exist
+      run: |
+        .\check_files_exist.ps1 -sqlFolderPath DML\Functions\
+    - name: Join SQL Files
+      run: |
+        .\join_sql_files.ps1 -sqlFolderPath "DML\Functions\" -outputFolderPath "DML\Functions\" -outputFileName "DMLFunctions.sql"
+      if: ${{ env.deploy =='true' }} 
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+      if: ${{ env.deploy =='true' }} 
+    - name: Deploy DML Functions
+      uses: azure/sql-action@v2.2.1
+      with:
+          connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
+          path: './DML/Functions/DMLFunctions.sql'
+          action: 'publish'
+      if: ${{ env.deploy =='true' }} 
+    - name: Upload DDL Functions as Artifact 
+      uses: actions/upload-artifact@v2
+      with:
+        name: dml-functions-artifact
+        path: './DML/Functions/DMLFunctions.sql'
+      if: ${{ env.deploy =='true' }} 
+    - name: Logout
+      run: az logout
+      if: ${{ env.deploy =='true' }} 
