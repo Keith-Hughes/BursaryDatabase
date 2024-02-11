@@ -27,29 +27,28 @@ jobs:
     - name: Join SQL Files
       run: |
         .\join_sql_files.ps1 -sqlFolderPath "DDL\StoredProcedures\" -outputFolderPath "DDL\StoredProcedures\" -outputFileName "DDLProcedures.sql"
-        echo "DEPLOY=${{ env.deploy }}
-      if: ${{ env.deploy }} == true  
+      if: contains(${{ env.deploy }}, 'true')  
     - name: Azure Login
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-      if: ${{ env.deploy }} == true
+      if: contains(${{ env.deploy }}, 'true')
     - name: Deploy DDL Procedures
       uses: azure/sql-action@v2.2.1
       with:
           connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
           path: './DDL/StoredProcedures/DDLProcedures.sql'
           action: 'publish'
-      if: ${{ env.deploy }} == true
+      if: contains(${{ env.deploy }}, 'true')
     - name: Upload DDL Procedure as Artifact 
       uses: actions/upload-artifact@v2
       with:
         name: ddl-procedures-artifact
         path: './DDL/StoredProcedures/DDLProcedures.sql'
-      if: ${{ env.deploy }} == true  
+      if: contains(${{ env.deploy }}, 'true')  
     - name: Logout
       run: az logout
-      if: ${{ env.deploy }} == true
+      if: contains(${{ env.deploy }}, 'true')
 
 
   deploy_dml_procedures:
