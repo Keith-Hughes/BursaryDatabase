@@ -13,7 +13,7 @@ CREATE PROCEDURE InsertNewQualification
 AS
 BEGIN TRY
     INSERT INTO Qualification
-        (StudentID, QualificationName, QualificationType, Description, StartingDate, EndingDate, AverageMark, Deapartname)
+        (StudentID, QualificationName, QualificationType, [Description], StartingDate, EndingDate, AverageMark, Deapartname)
     VALUES
         (@StudentID, @QualificationName, @QualificationType, @Description, @StartingDate, @EndingDate, @AverageMark, @Deapartname);
 

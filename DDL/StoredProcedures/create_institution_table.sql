@@ -4,7 +4,7 @@ GO
 CREATE PROCEDURE CreateInstitutionTable
 AS
 BEGIN
-    CREATE TABLE Institution (
+    CREATE TABLE Institutions (
        InstitutionID INT IDENTITY(1,1) NOT NULL,
        InstitutionName	VARCHAR(120) NOT NULL,	
        Email VARCHAR(120) NOT NULL, 

@@ -13,7 +13,7 @@ INSERT INTO DocumentTypes(DocumentType)
     ('Other');
 GO
 
-INSERT INTO [Races] 
+INSERT INTO [dbo].[Races] 
     VALUES 
     ('White'),
     ('Black'),
@@ -23,7 +23,7 @@ INSERT INTO [Races]
     ('Other');
 GO
 
-INSERT INTO dbo.[Statuses] 
+INSERT INTO [dbo].[Statuses] 
     VALUES 
     ('Pending'),
     ('Approved'),
