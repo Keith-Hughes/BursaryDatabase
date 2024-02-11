@@ -67,14 +67,14 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-      if: env.GITHUB_STATE_deploy == 'true'
+      if: ${{ env.deploy }} == "true"
     - name: Deploy DML Procedures
       uses: azure/sql-action@v2.2.1
       with:
           connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
           path: './DML/StoreProcedures/DMLProcedures.sql'
           action: 'publish'
-      if: env.GITHUB_STATE_deploy == 'true'
+      if: ${{ env.deploy }} == "true"'
     - name: Upload DML Procedures as Artifact 
       uses: actions/upload-artifact@v2
       with:
@@ -83,7 +83,7 @@ jobs:
       if: ${{ env.deploy }} == "true"      
     - name: Logout
       run: az logout
-      if: env.GITHUB_STATE_deploy == 'true'
+      if: ${{ env.deploy }} == "true"
 
 
   deploy_ddl_functions:
@@ -104,14 +104,14 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-      if: env.GITHUB_STATE_deploy == 'true'
+      if: ${{ env.deploy }} == "true"
     - name: Deploy DDL Functions
       uses: azure/sql-action@v2.2.1
       with:
           connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
           path: './DDL/Functions/DDLFunctions.sql'
           action: 'publish'
-      if: env.GITHUB_STATE_deploy == 'true'
+      if: ${{ env.deploy }} == "true"
     - name: Upload DDL Functions as Artifact 
       uses: actions/upload-artifact@v2
       with:
@@ -120,7 +120,7 @@ jobs:
       if: ${{ env.deploy }} == "true"
     - name: Logout
       run: az logout
-      if: env.GITHUB_STATE_deploy == 'true'
+      if: ${{ env.deploy }} == "true"
 
   deploy_dml_functions:
     if: ${{ github.event.pull_request.merged == 'true' || github.event_name == 'push' }}
@@ -140,14 +140,14 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-      if: env.GITHUB_STATE_deploy == 'true'
+      if: ${{ env.deploy }} == "true"
     - name: Deploy DML Functions
       uses: azure/sql-action@v2.2.1
       with:
           connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
           path: './DML/Functions/DMLFunctions.sql'
           action: 'publish'
-      if: env.GITHUB_STATE_deploy == 'true' 
+      if: ${{ env.deploy }} == "true" 
     - name: Upload DDL Functions as Artifact 
       uses: actions/upload-artifact@v2
       with:
@@ -156,4 +156,4 @@ jobs:
       if: ${{ env.deploy }} == "true"
     - name: Logout
       run: az logout
-      if: env.GITHUB_STATE_deploy == 'true'
+      if: ${{ env.deploy }} == "true"
