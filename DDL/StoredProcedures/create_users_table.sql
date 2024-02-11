@@ -4,7 +4,7 @@ CREATE TABLE Users(
     UserID INT IDENTITY(1,1) PRIMARY KEY, 
     FirstName VARCHAR(MAX) NOT NULL, 
     LastName VARCHAR(MAX) NOT NULL, 
-    Username VARCHAR(50) NOT NULL, 
+    Username VARCHAR(50) UNIQUE NOT NULL, 
     Password CHAR(64) NOT NULL, 
     Email VARCHAR(254) NOT NULL, 
     Address VARCHAR(100) NOT NULL, 

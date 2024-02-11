@@ -5,7 +5,6 @@ CREATE TABLE StudentRequests(
     StudentID INT FOREIGN KEY REFERENCES Students(StudentID),
     Motivation VARBINARY NOT NULL,
     Amount MONEY NOT NULL,
-    RequestStatus VARCHAR(20),
     StatusID INT FOREIGN KEY REFERENCES Status(StatusID),
     DateOfRequestSent DATE NOT NULL,
     DateOfStatusUpdate DATE,
