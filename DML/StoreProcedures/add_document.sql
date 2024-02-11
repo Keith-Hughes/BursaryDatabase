@@ -16,4 +16,3 @@ VALUES(
     CONVERT(DATE, GETDATE()),
     (SELECT DocumentTypeID FROM DocumentTypes WHERE DocumentType=@DocumentType)
 )
-GO;
