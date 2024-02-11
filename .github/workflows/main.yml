@@ -27,7 +27,7 @@ jobs:
     - name: Join SQL Files
       run: |
         .\join_sql_files.ps1 -sqlFolderPath "DDL\StoredProcedures\" -outputFolderPath "DDL\StoredProcedures\" -outputFileName "DDLProcedures.sql"
-      if: ${{ env.deploy }} == "true"   
+      if: ${{ env.deploy }} == 'true'  
     - name: Azure Login
       uses: azure/login@v1
       with:
