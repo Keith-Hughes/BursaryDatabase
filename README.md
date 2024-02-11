@@ -27,11 +27,28 @@ The Bursary Management System is designed to streamline the allocation of funds 
 
 ### Prerequisites
 
-- [List any dependencies or prerequisites needed to set up the system.]
-
+- SQL Server Management Studio (SSMS) [Download SSMS](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16)
+- Microsoft SQL Server or Azure SQL Server.
+- Clone of this repo on your machine. ```git git clone https://github.com/Keith-Hughes/BursaryDatabase```
 ### Installation
 
-- [Provide step-by-step instructions on how to install and set up the database.]
+- Open SQL Server Management Studio:
+Launch SQL Server Management Studio on your computer.
+
+- Connect to a Server:
+Connect to the SQL Server instance where you want to run the script. Enter the server name, authentication details, and click "Connect."
+
+- Open a Query Window:
+In the Object Explorer, navigate to the database or connect to the server where you want to run the script.
+Right-click on the database or server, choose "New Query."
+
+- Load or Paste the Script to create the Database:
+Locate the create_database.sql file in the root of the repo, you can open it using the "File" menu (File > Open > File).
+If you have the script in your clipboard or want to write a new script, paste it into the query window.
+Run the Script:
+
+Click the "Execute" button (or press F5).
+Alternatively, you can select the script you want to run and press F5.
 
 ### Database Initialization
 
