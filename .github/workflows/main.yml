@@ -22,6 +22,8 @@ jobs:
     - name: Check if files exist
       run: |
         .\check_files_exist.ps1 -sqlFolderPath "DDL\StoredProcedures\"
+    - name: Debug
+      run: echo "DEPLOY=${{ env.deploy }}"
     - name: Join SQL Files
       run: |
         .\join_sql_files.ps1 -sqlFolderPath "DDL\StoredProcedures\" -outputFolderPath "DDL\StoredProcedures\" -outputFileName "DDLProcedures.sql"
