@@ -4,7 +4,7 @@ AS
    
     CREATE TABLE [Qualification] (
     [QalificationID] INT IDENTITY PRIMARY KEY,
-    [StudentID] INT FOREIGN KEY REFERENCES(Students.StudentID) NOT NULL,
+    [StudentID] INT FOREIGN KEY REFERENCES Students(StudentID) NOT NULL,
     [QualificationName] VARCHAR(255) NOT NULL,
     [QualificationType] VARCHAR(255),
     [Description] VARCHAR(255),

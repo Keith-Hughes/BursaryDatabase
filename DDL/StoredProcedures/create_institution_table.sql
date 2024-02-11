@@ -12,5 +12,3 @@ BEGIN
        CONSTRAINT PK_Institution PRIMARY KEY (InstitutionID)
     );
 END;
-
-EXEC dbo.CreateInstitutionTable

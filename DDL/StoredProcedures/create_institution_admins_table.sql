@@ -15,5 +15,3 @@ BEGIN
        CONSTRAINT FK_InstitionAdmins_Users FOREIGN KEY (UserID) REFERENCES Users(UserID)
     );
 END;
-
-EXEC dbo.CreateInstitutionAdminsTable
