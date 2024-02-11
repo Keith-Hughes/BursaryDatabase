@@ -11,4 +11,3 @@ BEGIN
     );
 END;
 
-EXEC dbo.CreateRacesTable

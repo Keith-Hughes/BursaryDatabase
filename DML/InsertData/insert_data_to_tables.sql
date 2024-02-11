@@ -8,7 +8,7 @@ GO
 INSERT INTO DocumentTypes(DocumentType) 
     VALUES
     ('Identity Document'),
-    ('Transcript')
+    ('Transcript'),
     ('CV'),
     ('Other');
 GO
