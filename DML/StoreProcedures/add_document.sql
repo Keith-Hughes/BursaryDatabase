@@ -14,5 +14,6 @@ INSERT INTO Documents(
 VALUES(
     @Document,
     CONVERT(DATE, GETDATE()),
-    (SELECT DocumentTypeID FROM DocumentTypes WHERE DocumentType=@DocumentType)
+    (SELECT DocumentTypeID FROM DocumentTypes WHERE DocumentType=@DocumentType),
+    @RequestID
 )
