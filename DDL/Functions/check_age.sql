@@ -8,7 +8,7 @@ AS
 BEGIN 
     DECLARE @ValidatedStudentAge BOOLEAN
 
-    SELECT @ValidatedStudentAge = DATEDIFF(GETDATE() - DateOfBirth) from Students 
+    SELECT @ValidatedStudentAge = DATEDIFF(GETDATE() - (SELECT DateOfBirth FROM Students)) 
 
     RETURN @ValidatedStudentAge
 
