@@ -13,6 +13,6 @@ BEGIN
         FROM inserted;
 
         -- Call the stored procedure that will create the unique views for the new institution
-        EXEC dbo.HandleNewInstitution @InstitutionID;
+        EXEC CreateInstitutionTotalsView @InstitutionID
     END
 END;
