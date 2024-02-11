@@ -8,7 +8,7 @@ CREATE PROCEDURE CreateStudentRequest
 @InstitutionAdminsID INT,
 @BBDAdminID INT = NuLL,
 @StatusID INT= 1,
-@Movtivation VARBINARY(MAX),
+@Motivation VARBINARY(MAX),
 @Race VARCHAR(20)
 
 AS
