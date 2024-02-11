@@ -8,12 +8,12 @@ AS
 
 
     CREATE TABLE [Documents] (
-    [DocumentID] INT PRIMARY IDENTITY,
-    [File] BINARY(MAX),
+    [DocumentID] INT PRIMARY KEY IDENTITY,
+    [File] VARBINARY(MAX),
     [AverageMark] INT,
     [Year] DATE,
-    [RequestID] INT FOREIGN KEY REFERENCES(StudentRequests.RequestID),
-    [DocumentTypeID] INT FOREIGN KEY REFERENCES(DocumentTypes.DocumentTypeID)
+    [RequestID] INT FOREIGN KEY REFERENCES StudentRequests(RequestID),
+    [DocumentTypeID] INT FOREIGN KEY REFERENCES DocumentTypes(DocumentTypeID)
 
     );
 GO
