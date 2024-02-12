@@ -70,7 +70,7 @@ To initialize the database and populate constant data, follow these steps:
 
 ### Interacting with the Database
 
-- [Explain how users can interact with the database, including CRUD operations.]
+- The database is pre-loaded with procedures and functions to facilitate the data regarding bursaries.
 
 ### Executing Procedures
 
