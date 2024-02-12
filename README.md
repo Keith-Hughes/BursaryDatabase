@@ -51,23 +51,23 @@ Alternatively, you can select the script you want to run and press F5.
 
 To initialize the database and populate constant data, follow these steps:
 
-1. Execute the `create_tables.sql` procedure to create all necessary tables.
+1. Execute the `create_all_tables.sql` procedure to create all necessary tables.
 
-    ```sql
-    EXEC create_tables;
-    ```
+2. Execute the `create_all_procedures.sql` procedure to populate all procedures.
 
-2. Execute the `populate_constants.sql` procedure to populate constant data.
+3. Execute `create_all_views.sql` script to create all the views.
 
-    ```sql
-    EXEC populate_constants;
-    ```
+4. Execute `create_all_functions.sql` script to create the all the functions.
+
+5. Execute `create_all_triggers.sql` script to create all the triggers.
+
+6. Execute `populate_constants.sql` script to populate all the constants tables.
 
 ## Usage
 
 ### Interacting with the Database
 
-- [Explain how users can interact with the database, including CRUD operations.]
+- The database is pre-loaded with procedures and functions to facilitate the data regarding bursaries.
 
 ### Executing Procedures
 
@@ -230,5 +230,4 @@ VALUES(
 ### System Workflow
 
 - [Describe the workflow of the Bursary Management System, including how institutions request funding and the approval process.]
-
 

@@ -1,0 +1,7 @@
+CREATE PROCEDURE CreateRolesTable
+AS
+CREATE TABLE Roles( 
+    RoleID INT PRIMARY KEY,
+    RoleName VARCHAR(20)
+    )
+GO
