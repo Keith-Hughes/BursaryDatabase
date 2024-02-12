@@ -128,7 +128,7 @@ CREATE TABLE [Documents] (
     [DocumentID] INT PRIMARY KEY IDENTITY(1,1),
     [File] VARBINARY(MAX),
     [AverageMark] INT,
-    [Year] DATE,
+    [UploadDate] DATE,
     [RequestID] INT FOREIGN KEY REFERENCES StudentRequests(RequestID),
     [DocumentTypeID] INT FOREIGN KEY REFERENCES DocumentTypes(DocumentTypeID)
   )

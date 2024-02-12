@@ -3,7 +3,7 @@ USE BURSARYDATABASE
 GO
 
 INSERT INTO [dbo].[Roles] ([RoleName])
-VALUES ('Admin'), ('Student'), ('InstitutionAdmin');
+VALUES ('Admin'), ('InstitutionAdmin');
 
 INSERT INTO [dbo].[Users] ([FirstName], [LastName], [Username], [Password], [Email], [Address], [RoleID])
 VALUES ('John', 'Doe', 'johndoe', 'password123', 'johndoe@example.com', '123 Main St', 1),
@@ -14,7 +14,7 @@ VALUES ('University of XYZ', 'info@universityxyz.edu', 'University'),
        ('ABC College', 'info@abccollege.edu', 'College');
 
 INSERT INTO [dbo].[Races] ([RaceName])
-VALUES ('Asian'), ('Black/African'), ('White'), ('Hispanic/Latino');
+VALUES ('Asian'), ('Black/African'), ('White'), ('Indian')
 
 INSERT INTO [dbo].[Students] ([FirstName], [LastName], [DateOfBirth], [RaceID], [InstitutionID], [Department])
 VALUES ('Alice', 'Johnson', '2000-05-15', 3, 1, 'Computer Science'),
@@ -25,7 +25,7 @@ VALUES (1, 5000.00, 2500.00, '2023-01-15'),
        (2, 7500.00, 5000.00, '2023-02-20');
 
 INSERT INTO [dbo].[DocumentTypes] ([DocumentType])
-VALUES ('Transcript'), ('ID Document'), ('Proof of Address');
+VALUES ('Transcript'), ('ID Document'), ('CV');
 
 INSERT INTO [dbo].[InstitutionAdmins] ([InstitutionID], [UserID], [DepartmentName], [Position], [Email], [InstitutionType])
 VALUES (1, 1, 'Admissions', 'Admissions Officer', 'admissions@universityxyz.edu', 'University'),
