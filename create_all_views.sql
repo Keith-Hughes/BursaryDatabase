@@ -3,7 +3,7 @@
 CREATE VIEW vw_Get_ALL_students_Applications 
 AS
 
-SELECT  studs.FirstName, studs.LastName,ra.RaceName, 
+SELECT  studs.FirstName, studs.LastName,ra.Race, 
 		instu.InstitutionName, qua.Deapartname,
 		qua.QualificationName,stu.StatusName,req.Amount,qua.AverageMark
 		AS CurrentAverageMark,req.Motivation

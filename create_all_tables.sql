@@ -9,7 +9,7 @@ GO
 
 
 CREATE TABLE Roles( 
-    RoleID INT PRIMARY KEY,
+    RoleID INT IDENTITY(1,1) PRIMARY KEY ,
     RoleName VARCHAR(20)
     )
 GO
@@ -77,7 +77,7 @@ CREATE TABLE Statuses(
 GO
 
 CREATE TABLE [DocumentTypes] (
-    [DocumentTypeID] INT IDENTITY PRIMARY KEY,
+    [DocumentTypeID] INT IDENTITY(1,1) PRIMARY KEY,
     [DocumentType] VARCHAR(20)
     )
 GO
@@ -98,7 +98,7 @@ CREATE TABLE Students (
 GO
 
 CREATE TABLE [Qualification] (
-    [QalificationID] INT IDENTITY PRIMARY KEY,
+    [QalificationID] INT IDENTITY(1,1) PRIMARY KEY,
     [StudentID] INT FOREIGN KEY REFERENCES Students(StudentID) NOT NULL,
     [QualificationName] VARCHAR(255) NOT NULL,
     [QualificationType] VARCHAR(255),
@@ -111,7 +111,7 @@ CREATE TABLE [Qualification] (
 GO
 
 CREATE TABLE StudentRequests(
-    RequestID INT PRIMARY KEY,
+    RequestID INT IDENTITY(1,1) PRIMARY KEY,
     StudentID INT FOREIGN KEY REFERENCES Students(StudentID),
     Motivation VARBINARY NOT NULL,
     Amount MONEY NOT NULL,
