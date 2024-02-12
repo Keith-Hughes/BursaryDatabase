@@ -75,7 +75,7 @@ jobs:
       run: az logout
 
   deploy_procedures:
-    needs: build
+    needs: deploy_tables
     runs-on: windows-latest
     steps:
     - name: Checkout code
@@ -99,7 +99,7 @@ jobs:
       run: az logout  
 
   deploy_views:
-    needs: build
+    needs: deploy_procedures
     runs-on: windows-latest
     steps:
     - name: Checkout code
@@ -123,7 +123,7 @@ jobs:
       run: az logout    
 
   deploy_functions:
-    needs: build
+    needs: deploy_views
     runs-on: windows-latest
     steps:
     - name: Checkout code
@@ -147,7 +147,7 @@ jobs:
       run: az logout 
 
   deploy_triggers:
-    needs: build
+    needs: deploy_functions
     runs-on: windows-latest
     steps:
     - name: Checkout code
@@ -171,7 +171,7 @@ jobs:
       run: az logout 
 
   deploy_constants:
-    needs: build
+    needs: deploy_functions
     runs-on: windows-latest
     steps:
     - name: Checkout code
