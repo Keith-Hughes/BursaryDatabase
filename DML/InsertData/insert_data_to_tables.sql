@@ -1,9 +1,4 @@
 
-USE BURSARYDATABASE
-GO
-
-INSERT INTO [dbo].[Roles] ([RoleName])
-VALUES ('Admin'), ('InstitutionAdmin');
 
 INSERT INTO [dbo].[Users] ([FirstName], [LastName], [Username], [Password], [Email], [Address], [RoleID])
 VALUES ('John', 'Doe', 'johndoe', 'password123', 'johndoe@example.com', '123 Main St', 1),
@@ -13,8 +8,6 @@ INSERT INTO [dbo].[Institutions] ([InstitutionName], [Email], [InstitutionType])
 VALUES ('University of XYZ', 'info@universityxyz.edu', 'University'),
        ('ABC College', 'info@abccollege.edu', 'College');
 
-INSERT INTO [dbo].[Races] ([RaceName])
-VALUES ('Asian'), ('Black/African'), ('White'), ('Indian')
 
 INSERT INTO [dbo].[Students] ([FirstName], [LastName], [DateOfBirth], [RaceID], [InstitutionID], [Department])
 VALUES ('Alice', 'Johnson', '2000-05-15', 3, 1, 'Computer Science'),
@@ -24,15 +17,12 @@ INSERT INTO [dbo].[BursaryAllocations] ([InstitutionID], [AllocationAmount], [Al
 VALUES (1, 5000.00, 2500.00, '2023-01-15'),
        (2, 7500.00, 5000.00, '2023-02-20');
 
-INSERT INTO [dbo].[DocumentTypes] ([DocumentType])
-VALUES ('Transcript'), ('ID Document'), ('CV');
+
 
 INSERT INTO [dbo].[InstitutionAdmins] ([InstitutionID], [UserID], [DepartmentName], [Position], [Email], [InstitutionType])
 VALUES (1, 1, 'Admissions', 'Admissions Officer', 'admissions@universityxyz.edu', 'University'),
        (2, 2, 'Registrations', 'Registrar', 'registrar@abccollege.edu', 'College');
 
-INSERT INTO [dbo].[Statuses] ([StatusName])
-VALUES ('Pending'), ('Approved'), ('Rejected');
 
 INSERT INTO [dbo].[BBDAdmins] ([UserID])
 VALUES (1);
@@ -49,15 +39,11 @@ INSERT INTO [dbo].[Bursary] ([BursaryName], [Description], [MaximumFundingPerStu
 VALUES ('Merit Bursary', 'Awarded based on academic performance', 10000.00, '2024-03-31', 2024),
        ('Needs-Based Bursary', 'Awarded based on financial need', 7500.00, '2024-04-15', 2024);
 
-INSERT INTO [dbo].[DocumentTypes] ([DocumentType])
-VALUES ('Transcript'), ('ID Document'), ('Proof of Address');
 
 INSERT INTO [dbo].[InstitutionAdmins] ([InstitutionID], [UserID], [DepartmentName], [Position], [Email], [InstitutionType])
 VALUES (1, 2, 'Financial Aid', 'Financial Aid Officer', 'financialaid@universityxyz.edu', 'University'),
        (2, 1, 'Academic Affairs', 'Academic Dean', 'dean@abccollege.edu', 'College');
 
-INSERT INTO [dbo].[Statuses] ([StatusName])
-VALUES ('Pending'), ('Approved'), ('Rejected');
 
 INSERT INTO [dbo].[StudentRequests] ([StudentID], [Motivation], [Amount], [StatusID], [DateOfRequestSent], [InstitutionAdminsID], [BBDAdminID])
 VALUES (1, 'Requesting assistance with housing costs.', 2000.00, 1, '2024-01-20', 1, NULL),
@@ -67,8 +53,6 @@ INSERT INTO [dbo].[Qualifications] ([StudentID], [QualificationName], [Qualifica
 VALUES (1, 'Master of Business Administration', 'Masters', 'Business Administration', '2022-09-01', '2024-06-30', 88, 'Business School'),
        (2, 'Certificate in Project Management', 'Certificate', 'Project Management', '2023-01-01', '2023-12-31', 82, 'Engineering');
 
-INSERT INTO [dbo].[Races] ([RaceName])
-VALUES ('Native American'), ('Pacific Islander'), ('Mixed Race');
 
 INSERT INTO [dbo].[Institutions] ([InstitutionName], [Email], [InstitutionType])
 VALUES ('Community College of ABC', 'info@communitycollegeabc.edu', 'Community College'),
@@ -81,15 +65,11 @@ VALUES (3, 10000.00, 7500.00, '2023-05-20'),
 INSERT INTO [dbo].[BBDAdmins] ([UserID])
 VALUES (2), (3);
 
-INSERT INTO [dbo].[DocumentTypes] ([DocumentType])
-VALUES ('Financial Statement'), ('Recommendation Letter'), ('Resume/CV');
 
 INSERT INTO [dbo].[InstitutionAdmins] ([InstitutionID], [UserID], [DepartmentName], [Position], [Email], [InstitutionType])
 VALUES (3, 3, 'Student Services', 'Student Advisor', 'studentadvisor@communitycollegeabc.edu', 'Community College'),
        (4, 4, 'Admissions', 'Admissions Coordinator', 'admissions@techinstitute.xyz', 'Technical Institute');
 
-INSERT INTO [dbo].[Statuses] ([StatusName])
-VALUES ('Processing'), ('Completed');
 
 INSERT INTO [dbo].[StudentRequests] ([StudentID], [Motivation], [Amount], [StatusID], [DateOfRequestSent], [InstitutionAdminsID], [BBDAdminID])
 VALUES (1, 'Need assistance with transportation costs.', 1500.00, 1, '2024-03-05', 2, NULL),

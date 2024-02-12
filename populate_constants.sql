@@ -3,8 +3,8 @@ INSERT INTO [dbo].[Roles] ([RoleName])
 VALUES ('Admin'), ('InstitutionAdmin');
 GO
 
-INSERT INTO [dbo].[Races] ([RaceName])
-VALUES ('Asian'), ('Black/African'), ('White'), ('Indian')
+INSERT INTO [dbo].[Races] ([Race])
+VALUES ('African'), ('Coloured'), ('Indian')
 GO
 
 INSERT INTO [dbo].[DocumentTypes] ([DocumentType])
