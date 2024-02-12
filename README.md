@@ -18,12 +18,7 @@ The Bursary Management System is designed to streamline the allocation of funds 
     - [Interacting with the Database](#interacting-with-the-database)
     - [Executing Procedures](#executing-procedures)
     - [System Workflow](#system-workflow)
-3. [Contributing](#contributing)
-    - [Guidelines](#guidelines)
-    - [Code of Conduct](#code-of-conduct)
-4. [License](#license)
-5. [Acknowledgments](#acknowledgments)
-6. [Contact](#contact)
+
 
 ## Getting Started
 
