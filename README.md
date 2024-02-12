@@ -236,26 +236,4 @@ VALUES(
 
 - [Describe the workflow of the Bursary Management System, including how institutions request funding and the approval process.]
 
-## Contributing
 
-- [Explain how others can contribute to the development of the system and database.]
-
-### Guidelines
-
-- [Provide contribution guidelines, including coding standards and processes.]
-
-### Code of Conduct
-
-- [Include a link to your project's code of conduct.]
-
-## License
-
-- [Specify the license under which the system and database are distributed.]
-
-## Acknowledgments
-
-- [If you want to give credit or mention contributors, tools, or libraries used in the system, do so in this section.]
-
-## Contact
-
-- [Provide contact information for users to reach out with questions or feedback.]
