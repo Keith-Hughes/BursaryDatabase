@@ -5,6 +5,8 @@ This database is part of a Bursary Management System that allows institutions to
 ## Overview
 
 The Bursary Management System is designed to streamline the allocation of funds and facilitate the funding request process. Institutions can request funding for students, and these requests are sent to the funder for approval or decline. The funder will manage the institutions and allocations on they system.
+![image](https://github.com/Keith-Hughes/BursaryDatabase/assets/62145841/f004bc3f-b4a6-4580-980c-5cf74509d165)
+
 
 ## Table of Contents
 
@@ -16,12 +18,7 @@ The Bursary Management System is designed to streamline the allocation of funds 
     - [Interacting with the Database](#interacting-with-the-database)
     - [Executing Procedures](#executing-procedures)
     - [System Workflow](#system-workflow)
-3. [Contributing](#contributing)
-    - [Guidelines](#guidelines)
-    - [Code of Conduct](#code-of-conduct)
-4. [License](#license)
-5. [Acknowledgments](#acknowledgments)
-6. [Contact](#contact)
+
 
 ## Getting Started
 
@@ -234,6 +231,3 @@ VALUES(
 
 - [Describe the workflow of the Bursary Management System, including how institutions request funding and the approval process.]
 
-## Contributing
-
-- [Explain how others can contribute to the development of the system and database.]
